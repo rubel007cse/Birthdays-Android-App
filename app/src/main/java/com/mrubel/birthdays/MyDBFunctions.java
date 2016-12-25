@@ -1,6 +1,8 @@
 package com.mrubel.birthdays;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -34,4 +36,51 @@ public class MyDBFunctions extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+
+    // ---- ---- adding data to database --- -----
+
+    void addingDataToTable(DataTemp dt){
+
+        SQLiteDatabase sqd  = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(TAB_NAME, dt.getName());
+        cv.put(TAB_DAYS, dt.getDay());
+
+        sqd.insert(TABLE_NAME, null, cv);
+        sqd.close();
+
+    }
+
+
+    // --- ---- showing data ------ ----
+
+    String[] my_data() {
+
+        SQLiteDatabase sq = this.getReadableDatabase();
+
+        String q = "SELECT * FROM "+TABLE_NAME;
+
+        Cursor c = sq.rawQuery(q, null);
+
+        String[] recvied_data = new String[c.getCount()];
+
+        c.moveToFirst();
+
+        if(c.moveToFirst()){
+            int counter = 0 ;
+            do {
+                recvied_data[counter] = c.getString(c.getColumnIndex(TAB_NAME+"")) +"\nBirthday: "+
+                c.getString(c.getColumnIndex(TAB_DAYS+""));
+                counter = counter+1;
+
+            } while(c.moveToNext());
+
+        }
+
+        return recvied_data;
+    }
+
+
 }

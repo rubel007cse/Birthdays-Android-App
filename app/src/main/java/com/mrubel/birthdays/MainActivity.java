@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         b1 = (Button) findViewById(R.id.save);
         b2 = (Button) findViewById(R.id.show);
 
+        final MyDBFunctions mf = new MyDBFunctions(getApplicationContext());
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +33,14 @@ public class MainActivity extends AppCompatActivity {
                 String _name = e1.getText().toString();
                 String _bday = e2.getText().toString();
 
-                Toast.makeText(getApplicationContext(), "Name: "+_name+", Bday: "+_bday, Toast.LENGTH_LONG).show();
+                DataTemp dt = new DataTemp(_name, _bday);
+
+                mf.addingDataToTable(dt);
+
+                Toast.makeText(getApplicationContext(), "Data added successfully!", Toast.LENGTH_LONG).show();
+
+
+
             }
         });
 
