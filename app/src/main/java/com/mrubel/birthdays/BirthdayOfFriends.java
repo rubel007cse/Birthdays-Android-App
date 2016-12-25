@@ -19,10 +19,14 @@ public class BirthdayOfFriends extends AppCompatActivity {
 
         String[] data = mf.my_data();
 
-        for(int i =0; i < data.length; i++){
-            tv.setText(data[i]);
+        String s = "";
 
+        for(int i=0; i < data.length; i++){
+
+            s = s+ data[i]+"\n\n";
         }
+
+        tv.setText(s);
 
 
     }
