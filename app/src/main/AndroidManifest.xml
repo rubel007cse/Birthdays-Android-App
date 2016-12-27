@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BirthdayOfFriends"></activity>
+        <activity android:name=".BirthdayOfFriends" />
+        <activity android:name=".SingleBDay"></activity>
     </application>
 
 </manifest>

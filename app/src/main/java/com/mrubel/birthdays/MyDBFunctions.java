@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by mosharrofrubel on 12/25/16.
@@ -81,6 +82,40 @@ public class MyDBFunctions extends SQLiteOpenHelper {
 
         return recvied_data;
     }
+
+
+    String fetch_day(int id) {
+
+        SQLiteDatabase sq = this.getReadableDatabase();
+
+        String q = "SELECT "+TAB_DAYS+" FROM "+TABLE_NAME+" WHERE "+TAB_ID+" = "+id;
+
+        Cursor c = sq.rawQuery(q, null);
+        String s = "";
+
+        c.moveToFirst();
+
+        if(c.moveToFirst()) {
+            s = c.getString(c.getColumnIndex(TAB_DAYS+""));
+        }
+
+        return s;
+
+    }
+
+
+    int update_birthday(int id, String bday) {
+
+        SQLiteDatabase sq = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(TAB_DAYS, bday);
+
+        return sq.update(TABLE_NAME, cv, TAB_ID+" = ? ", new String[]{id+""});
+
+    }
+
+
 
 
 }

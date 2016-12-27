@@ -1,33 +1,42 @@
 package com.mrubel.birthdays;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class BirthdayOfFriends extends AppCompatActivity {
 
-    TextView tv;
+    ListView lv;
+    String[] data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birthday_of_friends);
 
-        tv = (TextView) findViewById(R.id.show_data);
+        lv = (ListView) findViewById(R.id.myfriendbday);
 
         MyDBFunctions mf = new MyDBFunctions(getApplicationContext());
 
-        String[] data = mf.my_data();
+        data = mf.my_data();
 
-        String s = "";
 
-        for(int i=0; i < data.length; i++){
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), SingleBDay.class);
+                i.putExtra("MyKEY", position);
+                startActivity(i);
+            }
+        });
 
-            s = s+ data[i]+"\n\n";
-        }
 
-        tv.setText(s);
 
 
     }
+
 }
