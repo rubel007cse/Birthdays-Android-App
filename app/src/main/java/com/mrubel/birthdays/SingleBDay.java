@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class SingleBDay extends AppCompatActivity {
 
     EditText e;
-    Button b;
+    Button b, d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,8 @@ public class SingleBDay extends AppCompatActivity {
 
         e = (EditText) findViewById(R.id.edittext);
         b = (Button) findViewById(R.id.updatedatabase);
+        d = (Button) findViewById(R.id.delete_data);
+
 
         final int rec_pos = getIntent().getIntExtra("MyKEY", 999);
 
@@ -36,6 +38,15 @@ public class SingleBDay extends AppCompatActivity {
                 Toast.makeText(SingleBDay.this, "Updated Successfully!", Toast.LENGTH_SHORT).show();
 
 
+            }
+        });
+
+
+        d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                obj.delete_bday(obj.fetch_day(rec_pos+1));
+                Toast.makeText(getApplicationContext(), "Deleted Successfully!", Toast.LENGTH_SHORT).show();
             }
         });
 

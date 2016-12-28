@@ -24,6 +24,7 @@ public class BirthdayOfFriends extends AppCompatActivity {
 
         data = mf.my_data();
 
+        lv.setAdapter(new ArrayAdapter(getApplicationContext(), R.layout.lview, R.id.mytext, data));
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

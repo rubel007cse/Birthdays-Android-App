@@ -12,12 +12,31 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"/>
 
-    <Button
-        android:id="@+id/updatedatabase"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:layout_margin="20dp"
-        android:text="Update"/>
+        android:orientation="horizontal"
+        android:padding="15dp">
+        <Button
+            android:id="@+id/updatedatabase"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:text="Update"
+            android:textColor="#fff"/>
+
+        <Button
+            android:id="@+id/delete_data"
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginLeft="10dp"
+            android:text="Delete"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

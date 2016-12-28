@@ -116,6 +116,13 @@ public class MyDBFunctions extends SQLiteOpenHelper {
     }
 
 
+    int delete_bday(String bday){
+
+        SQLiteDatabase s = this.getWritableDatabase();
+
+        return s.delete(TABLE_NAME, TAB_DAYS+" = ?", new String[] {bday});
+
+    }
 
 
 }
